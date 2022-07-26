@@ -20,9 +20,21 @@ const images = [
   "https://picsum.photos/id/249/1920/1080",
   "https://picsum.photos/id/250/1920/1080",
 ];
+const modalEl = document.querySelector(".modal");
+const overlayEl = document.querySelector(".overlay");
 
 for (const img of images) {
   const imgEl = document.createElement("img");
   imgEl.src = img;
+  imgEl.addEventListener("click", function () {
+    document.querySelector(".modal-img").src = img;
+    modalEl.classList.toggle("hidden");
+    overlayEl.classList.toggle("hidden");
+  });
   document.body.querySelector(".container").append(imgEl);
 }
+
+overlayEl.addEventListener("click", () => {
+  overlayEl.classList.toggle("hidden");
+  modalEl.classList.toggle("hidden");
+});
