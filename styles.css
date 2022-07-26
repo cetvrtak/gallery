@@ -1,0 +1,50 @@
+/*
+    FONT SIZE SYSTEM (px)
+    10 / 12 / 14 / 16 / 18 / 20 / 24 / 30 / 36 / 44 / 52 / 62 / 74 / 86 / 98
+
+    SPACING SYSTEM (px)
+    2 / 4 / 8 / 12 / 16 / 24 / 32 / 48 / 64 / 80 / 96 / 128
+*/
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 3.2rem;
+  align-items: center;
+  justify-items: center;
+  margin: 9.6rem 3.2rem;
+}
+
+img {
+  width: 100%;
+  transition: all 0.4s;
+}
+
+img:hover {
+  transform: scale(1.1);
+  box-shadow: 0rem 0.02rem 1rem;
+}
+
+/* TABLET */
+@media (max-width: 768px) {
+  .container {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* PHONE */
+@media (max-width: 425px) {
+  .container {
+    grid-template-columns: 1fr;
+  }
+}
