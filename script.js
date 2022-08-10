@@ -21,13 +21,21 @@ const images = [
   "https://picsum.photos/id/250/1920/1080",
 ];
 const modalEl = document.querySelector(".modal");
+const modalImg = document.querySelector(".modal-img");
 const overlayEl = document.querySelector(".overlay");
+const caretBck = document.querySelector(".caret-back");
+const caretFwd = document.querySelector(".caret-forward");
+const slideCounter = document.querySelector(".slide-counter");
 
+let curImg = 0;
 for (const img of images) {
   const imgEl = document.createElement("img");
   imgEl.src = img;
+  imgEl.dataset.id = images.indexOf(img);
   imgEl.addEventListener("click", function () {
-    document.querySelector(".modal-img").src = img;
+    curImg = +imgEl.dataset.id;
+    slideCounter.innerHTML = `${curImg + 1} / ${images.length}`;
+    modalImg.src = img;
     modalEl.classList.toggle("hidden");
     overlayEl.classList.toggle("hidden");
   });
@@ -37,4 +45,18 @@ for (const img of images) {
 overlayEl.addEventListener("click", () => {
   overlayEl.classList.toggle("hidden");
   modalEl.classList.toggle("hidden");
+});
+
+caretBck.addEventListener("click", () => {
+  if (curImg == 0) return;
+  modalImg.src = images[curImg - 1];
+  curImg--;
+  slideCounter.innerHTML = `${curImg + 1} / ${images.length}`;
+});
+
+caretFwd.addEventListener("click", () => {
+  if (curImg == images.length - 1) return;
+  modalImg.src = images[curImg + 1];
+  curImg++;
+  slideCounter.innerHTML = `${curImg + 1} / ${images.length}`;
 });
